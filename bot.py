@@ -15,25 +15,12 @@ responses = {
     "пока": "гудбай",
     "спасибо": "всегда пожалуйста",
     "как тебя зовут": "я собака, братан",
-    "ты тупой": "прям как твой жирный отец"
+    "ты тупой": "прям как твой жирный отец",
+    "пошел нахуй": "кусай захуй",
+    "какая сейчас погода": "хз",
+    "ты человек": "нет, я собака",
+    "что ты любишь": "отвечать таким ебланам как ты",
+    "ты собака": "подумай"
 }
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Привет! Я бот!")
-
-async def handle(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = update.message.text.lower()
-    for word, answer in responses.items():
-        if word in text:
-            await update.message.reply_text(answer)
-            return
-    await update.message.reply_text("Не понял. Напиши 'привет'")
-
-def main():
-    app = Application.builder().token(TOKEN).build()
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle))
-    app.run_polling()
-
-if __name__ == "__main__":
-    main()
